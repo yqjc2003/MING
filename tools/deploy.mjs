@@ -4,9 +4,11 @@
  * 这样代码与仓库里不写死备案号、仓库地址等个人配置，换人部署只需换环境变量。
  *
  * 用法：
- *   SITE_BEIAN="苏ICP备XXXXXXXX号-1" SITE_GITHUB="https://github.com/xxx/repo" npm run deploy
+ *   SITE_BEIAN="苏ICP备XXXXXXXX号-1" SITE_GITHUB="https://github.com/xxx/repo" \
+ *   SITE_BAIDU_ID="6364be20c46859cfd1c2cf79d536145b" npm run deploy
  *
- * 未设置的环境变量不会注入，页面对应的链接会保持隐藏（见 public/app.js 的 renderConfig）。
+ * 未设置的环境变量不会注入：页脚链接保持隐藏（见 public/app.js 的 renderConfig），
+ * 百度统计脚本也不会加载（见 public/index.html 的 <head>）。
  * 本地开发时把同样的键值写进 .dev.vars（已被 .gitignore 忽略）即可。
  */
 import { spawnSync } from 'node:child_process';
@@ -16,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 /** 允许注入到 Worker 的配置项 */
-const VAR_KEYS = ['SITE_BEIAN', 'SITE_GITHUB'];
+const VAR_KEYS = ['SITE_BEIAN', 'SITE_GITHUB', 'SITE_BAIDU_ID'];
 
 const args = [];
 for (const key of VAR_KEYS) {

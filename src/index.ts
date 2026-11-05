@@ -7,6 +7,8 @@ export interface Env {
   SITE_BEIAN?: string;
   /** 源码仓库地址，部署时由环境变量注入 */
   SITE_GITHUB?: string;
+  /** 百度统计站点 ID（hm.baidu.com/hm.js?后面那串），留空则不加载统计脚本 */
+  SITE_BAIDU_ID?: string;
 }
 
 const JSON_HEADERS = {
@@ -131,6 +133,7 @@ export default {
         JSON.stringify({
           beian: env.SITE_BEIAN ?? '',
           github: env.SITE_GITHUB ?? '',
+          baidu: env.SITE_BAIDU_ID ?? '',
         }),
         'public, max-age=3600',
       );

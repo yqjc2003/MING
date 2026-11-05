@@ -15,6 +15,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.2.5/index.css">
 <link rel="stylesheet" href="./styles.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23A62A20'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23EFE8D8' font-family='serif'%3E明%3C/text%3E%3C/svg%3E">
+
+<!-- 百度统计：站点 ID 由环境变量 SITE_BAIDU_ID 注入，未配置则不加载统计脚本 -->
+<script>
+var _hmt = _hmt || [];
+// 站点配置（备案号 / 源码仓库 / 百度统计 ID）由 /api/config 提供，全站只取一次
+window.__siteConfig = fetch('/api/config')
+  .then(function (r) { return r.json(); })
+  .then(function (cfg) {
+    if (!cfg.baidu) return cfg;
+    var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?' + cfg.baidu;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    return cfg;
+  })
+  .catch(function () { return {}; });
+</script>
 </head>
 <body>
 
@@ -185,12 +202,12 @@
   <div class="footer-inner">
     <p class="footer-title">大明 · 帝王世系与官职品级</p>
     <p class="footer-links">
+      <a class="footer-errata" id="footer-errata" href="#" target="_blank" rel="noopener noreferrer" title="发现讹误？提交勘误" hidden>勘误</a>
       <a class="footer-github" id="footer-github" href="#" target="_blank" rel="noopener noreferrer" title="GitHub 源码仓库" aria-label="GitHub 源码仓库" hidden>
         <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        <span>源码仓库</span>
       </a>
-      <a class="footer-beian" id="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" hidden></a>
     </p>
+    <p class="footer-beian"><a id="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" hidden></a></p>
   </div>
 </footer>
 

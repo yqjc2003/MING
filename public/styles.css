@@ -641,15 +641,24 @@ tr.is-hit,
 .footer-links a { color: rgba(239, 232, 216, .68); text-decoration: none; }
 .footer-links [hidden] { display: none; }
 .footer-links a:hover { color: var(--gold-bright); }
+.footer-errata { letter-spacing: .14em; }
 .footer-github {
-  display: inline-flex; align-items: center; gap: .45rem;
-  padding: .2rem .6rem .2rem .5rem;
+  margin-left: auto;
+  display: inline-flex; align-items: center;
+  padding: .35rem .45rem;
   border: 1px solid rgba(190, 150, 64, .35);
   border-radius: 2px;
   transition: border-color .18s ease, color .18s ease;
 }
 .footer-github:hover { border-color: var(--gold); }
-.footer-beian { letter-spacing: .04em; }
+.footer-beian {
+  margin-top: .9rem;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .04em;
+}
+.footer-beian a { color: rgba(239, 232, 216, .6); text-decoration: none; }
+.footer-beian a:hover { color: var(--gold-bright); }
 
 /* ─────────────────────────────  响应式  ───────────────────────────── */
 

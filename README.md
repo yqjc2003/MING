@@ -46,17 +46,37 @@ npm run extract      # doc/*.xlsx → src/data/ming.ts
 | 变量 | 用途 |
 | --- | --- |
 | `SITE_BEIAN` | 页脚备案号，留空则不显示 |
-| `SITE_GITHUB` | 页脚「源码仓库」链接，留空则不显示 |
+| `SITE_GITHUB` | 页脚 GitHub 图标链接（同时供「勘误」链接到 `issues/new`），留空则不显示 |
+| `SITE_BAIDU_ID` | 百度统计站点 ID，留空则不加载 `hm.baidu.com` 统计脚本 |
 
 ```bash
 SITE_BEIAN="苏ICP备XXXXXXXX号-1" \
 SITE_GITHUB="https://github.com/xxx/repo" \
+SITE_BAIDU_ID="6364be20c46859cfd1c2cf79d536145b" \
 npm run deploy
 ```
 
 `tools/deploy.mjs` 把这些变量作为 Worker 的 vars 传下去；
 前端通过 `GET /api/config` 读取，取不到时对应元素保持隐藏，站点仍可独立使用。
 本地开发时把同样的键值写进 `.dev.vars`（已 gitignore）。
+
+### 百度统计
+
+统计代码装在 `public/index.html` 的 `<head>` 里（全站只有这一处页面模板，装一次全站生效），
+站点 ID 从 `SITE_BAIDU_ID` 读，不写死在代码里：
+
+```js
+var _hmt = _hmt || [];
+fetch('/api/config').then(r => r.json()).then(cfg => {
+  if (!cfg.baidu) return;                    // 未配置则不加载
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + cfg.baidu;
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(hm, s);
+});
+```
+
+未配置 `SITE_BAIDU_ID` 时不会向百度发起任何请求。
 
 ## 接口
 

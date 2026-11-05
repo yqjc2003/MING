@@ -111,7 +111,9 @@ async function renderStats() {
 async function renderConfig() {
   let cfg;
   try {
-    cfg = await (await fetch('/api/config')).json();
+    cfg = window.__siteConfig
+      ? await window.__siteConfig
+      : await (await fetch('/api/config')).json();
   } catch {
     return;
   }
@@ -119,6 +121,13 @@ async function renderConfig() {
   if (gh && cfg.github) {
     gh.href = cfg.github;
     gh.hidden = false;
+  }
+  // 勘误：指向仓库的新建 Issue 页面
+  const repo = (cfg.github || '').trim().replace(/\/+$/, '').replace(/\.git$/, '');
+  const errata = $('#footer-errata');
+  if (errata && repo) {
+    errata.href = `${repo}/issues/new`;
+    errata.hidden = false;
   }
   const beian = $('#footer-beian');
   if (beian && cfg.beian) {
