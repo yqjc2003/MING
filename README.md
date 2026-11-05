@@ -45,14 +45,12 @@ npm run extract      # doc/*.xlsx → src/data/ming.ts
 
 | 变量 | 用途 |
 | --- | --- |
-| `SITE_BEIAN` | 页脚备案号，留空则不显示 |
 | `SITE_GITHUB` | 页脚 GitHub 图标链接（同时供「勘误」链接到 `issues/new`），留空则不显示 |
 | `SITE_BAIDU_ID` | 百度统计站点 ID，留空则不加载 `hm.baidu.com` 统计脚本 |
 
 ```bash
-SITE_BEIAN="苏ICP备XXXXXXXX号-1" \
 SITE_GITHUB="https://github.com/xxx/repo" \
-SITE_BAIDU_ID="6364be20c46859cfd1c2cf79d536145b" \
+SITE_BAIDU_ID="b80b7cc6dc04b7948b52dbf3cc2ccc10" \
 npm run deploy
 ```
 
@@ -84,7 +82,7 @@ fetch('/api/config').then(r => r.json()).then(cfg => {
 | --- | --- |
 | `GET /api/data` | 完整数据集 |
 | `GET /api/stats` | 各部分条目数 |
-| `GET /api/config` | 站点个人配置（备案号、仓库地址） |
+| `GET /api/config` | 站点个人配置（仓库地址、统计 ID） |
 | `GET /api/search?q=指挥使` | 跨帝王、官职、皇族的检索 |
 | `GET /api/sections/:id` | 单个官职区块 |
 | `GET /api/emperors` | 帝王与南明列表 |

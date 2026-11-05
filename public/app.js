@@ -105,7 +105,7 @@ async function renderStats() {
 }
 
 /**
- * 页脚个人配置：备案号与源码仓库地址由部署时的环境变量提供，
+ * 页脚个人配置：源码仓库地址由部署时的环境变量提供，
  * 未配置时对应链接保持隐藏，站点仍可独立使用。
  */
 async function renderConfig() {
@@ -128,11 +128,6 @@ async function renderConfig() {
   if (errata && repo) {
     errata.href = `${repo}/issues/new`;
     errata.hidden = false;
-  }
-  const beian = $('#footer-beian');
-  if (beian && cfg.beian) {
-    beian.textContent = cfg.beian;
-    beian.hidden = false;
   }
 }
 

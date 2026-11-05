@@ -1,11 +1,11 @@
 /**
  * 部署脚本：把站点个人配置从环境变量读出来，注入为 Worker 的 vars。
  *
- * 这样代码与仓库里不写死备案号、仓库地址等个人配置，换人部署只需换环境变量。
+ * 这样代码与仓库里不写死仓库地址、统计 ID 等个人配置，换人部署只需换环境变量。
  *
  * 用法：
- *   SITE_BEIAN="苏ICP备XXXXXXXX号-1" SITE_GITHUB="https://github.com/xxx/repo" \
- *   SITE_BAIDU_ID="6364be20c46859cfd1c2cf79d536145b" npm run deploy
+ *   SITE_GITHUB="https://github.com/xxx/repo" \
+ *   SITE_BAIDU_ID="b80b7cc6dc04b7948b52dbf3cc2ccc10" npm run deploy
  *
  * 未设置的环境变量不会注入：页脚链接保持隐藏（见 public/app.js 的 renderConfig），
  * 百度统计脚本也不会加载（见 public/index.html 的 <head>）。
@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 /** 允许注入到 Worker 的配置项 */
-const VAR_KEYS = ['SITE_BEIAN', 'SITE_GITHUB', 'SITE_BAIDU_ID'];
+const VAR_KEYS = ['SITE_GITHUB', 'SITE_BAIDU_ID'];
 
 const args = [];
 for (const key of VAR_KEYS) {
@@ -29,7 +29,7 @@ for (const key of VAR_KEYS) {
   }
 }
 if (!args.length) {
-  console.log('未检测到 SITE_* 环境变量，页脚将不显示备案号与仓库链接。');
+  console.log('未检测到 SITE_* 环境变量，页脚将不显示仓库链接，也不会加载统计脚本。');
 }
 
 const wrangler = path.join(ROOT, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
