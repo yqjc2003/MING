@@ -1,0 +1,21 @@
+{
+  "name": "ming-dynasty",
+  "version": "1.0.0",
+  "private": true,
+  "description": "大明 · 帝王世系与官职品级 — Cloudflare Worker 静态站点",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "deploy": "node tools/deploy.mjs",
+    "build": "wrangler deploy --dry-run --outdir=dist",
+    "check": "tsc --noEmit",
+    "types": "wrangler types",
+    "extract": "node tools/extract-xlsx.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261103.1",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.157.0"
+  }
+}

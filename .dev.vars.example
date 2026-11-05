@@ -1,0 +1,9 @@
+# 复制为 .dev.vars 后填入你自己的值（.dev.vars 已被 .gitignore 忽略）。
+# 部署时用同名环境变量注入：
+#   SITE_BEIAN="苏ICP备XXXXXXXX号-1" SITE_GITHUB="https://github.com/xxx/repo" npm run deploy
+
+# 页脚备案号，留空则不显示
+SITE_BEIAN=
+
+# 页脚「源码仓库」链接，留空则不显示
+SITE_GITHUB=

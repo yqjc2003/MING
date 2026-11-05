@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>大明 · 帝王世系与官职品级</title>
+<meta name="description" content="明朝十七帝年号谥号、皇族子嗣世系、宗室封爵与散阶勋级、科举取士，以及六部与诸司的完整职官品级表。">
+<meta name="theme-color" content="#1E1613">
+<meta property="og:title" content="大明 · 帝王世系与官职品级">
+<meta property="og:description" content="从洪武元年到崇祯十七年，十七帝、二十三房字辈、五百余条职官品级。">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.2.5/index.css">
+<link rel="stylesheet" href="./styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23A62A20'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23EFE8D8' font-family='serif'%3E明%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <a class="brand" href="#">
+    <span class="brand-seal" aria-hidden="true">明</span>
+    <span class="brand-text">
+      <span class="brand-title">大明</span>
+      <span class="brand-sub">帝王世系 · 官职品级</span>
+    </span>
+  </a>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="内容分区">
+    <button class="tab" role="tab" id="tab-lineage"   aria-controls="panel-lineage"   aria-selected="true"  data-panel="lineage">帝王世系</button>
+    <button class="tab" role="tab" id="tab-princes"   aria-controls="panel-princes"   aria-selected="false" data-panel="princes">皇族子嗣</button>
+    <button class="tab" role="tab" id="tab-officials" aria-controls="panel-officials" aria-selected="false" data-panel="officials">官职品级</button>
+    <button class="tab" role="tab" id="tab-ranks"     aria-controls="panel-ranks"     aria-selected="false" data-panel="ranks">封爵散阶</button>
+    <button class="tab" role="tab" id="tab-exams"     aria-controls="panel-exams"     aria-selected="false" data-panel="exams">科举取士</button>
+  </nav>
+
+  <div class="search" role="search">
+    <label class="visually-hidden" for="global-search">检索帝王、官职、皇族</label>
+    <input id="global-search" type="search" placeholder="检索帝王 · 官职 · 皇族" autocomplete="off" spellcheck="false">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ──────────────────────────────  首屏  ────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-lead">
+        <h1 class="hero-title"><span>大</span><span>明</span></h1>
+        <p class="hero-kicker">自洪武元年 至 崇祯十七年</p>
+        <p class="hero-desc">
+          十七帝年号谥号、二十三房皇族字辈、宗室封爵与文武散阶，
+          以及自皇帝辅臣至派驻地方官的五百余条职官品级。
+        </p>
+      </div>
+
+      <dl class="hero-stats" id="hero-stats">
+        <div><dt>在位皇帝</dt><dd data-stat="emperors">—</dd></div>
+        <div><dt>南明诸帝</dt><dd data-stat="southMing">—</dd></div>
+        <div><dt>皇族字辈</dt><dd data-stat="generationPoems">—</dd></div>
+        <div><dt>职官条目</dt><dd data-stat="officialRows">—</dd></div>
+      </dl>
+    </div>
+
+    <div class="reign-strip-wrap">
+      <div class="reign-strip" id="reign-strip" aria-label="明朝历代帝王"></div>
+    </div>
+    <div class="hero-wave" aria-hidden="true"></div>
+  </section>
+
+  <!-- ──────────────────────────────  帝王世系  ────────────────────────────── -->
+  <section class="panel" id="panel-lineage" role="tabpanel" aria-labelledby="tab-lineage" tabindex="-1">
+    <div class="panel-head">
+      <h2>大明正朔</h2>
+      <p>庙号、名讳、年号、在位与谥号。南明诸帝别附其后。</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="grid" id="emperors-table">
+        <thead>
+          <tr><th>庙号</th><th>名讳</th><th>年号</th><th>在位</th><th>谥号</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">南明五帝</h3>
+    <div class="table-wrap">
+      <table class="grid" id="south-table">
+        <thead>
+          <tr><th>庙号</th><th>名讳</th><th>年号</th><th>在位</th><th>谥号</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">皇室字辈</h3>
+    <p class="note">各王府支派按辈分排定用字，取二十字一句，循环相生。</p>
+    <ul class="poems" id="poem-list"></ul>
+  </section>
+
+  <!-- ──────────────────────────────  皇族子嗣  ────────────────────────────── -->
+  <section class="panel" id="panel-princes" role="tabpanel" aria-labelledby="tab-princes" tabindex="-1" hidden>
+    <div class="panel-head">
+      <h2>皇族子嗣</h2>
+      <p>列祖列宗之子嗣封爵。凡早夭、未封者，俱书于此。</p>
+    </div>
+    <div class="prince-groups" id="prince-groups"></div>
+  </section>
+
+  <!-- ──────────────────────────────  官职品级  ────────────────────────────── -->
+  <section class="panel" id="panel-officials" role="tabpanel" aria-labelledby="tab-officials" tabindex="-1" hidden>
+    <div class="panel-head">
+      <h2>职官品级</h2>
+      <p>自皇帝辅臣、中央六部诸司，至地方州府、羁縻土司、卫所与厂卫。按官属分列，点开任一职可读其职事。</p>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="filter-section">区块</label>
+        <select id="filter-section"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-rank">品级</label>
+        <select id="filter-rank"></select>
+      </div>
+      <div class="filter-group grow">
+        <label for="filter-text">筛选</label>
+        <input id="filter-text" type="search" placeholder="官职、隶属或职事中含有的字" autocomplete="off">
+      </div>
+      <p class="filter-count" id="filter-count" aria-live="polite"></p>
+    </div>
+
+    <div class="legend" aria-label="品级服色">
+      <span><i class="chip rank-0"></i>超品</span>
+      <span><i class="chip rank-1"></i>一品·绯</span>
+      <span><i class="chip rank-2"></i>二至三品·绯</span>
+      <span><i class="chip rank-3"></i>四至七品·青</span>
+      <span><i class="chip rank-4"></i>八至九品·黄</span>
+      <span><i class="chip rank-5"></i>未入流·素</span>
+    </div>
+
+    <div id="official-sections"></div>
+  </section>
+
+  <!-- ──────────────────────────────  封爵散阶  ────────────────────────────── -->
+  <section class="panel" id="panel-ranks" role="tabpanel" aria-labelledby="tab-ranks" tabindex="-1" hidden>
+    <div class="panel-head">
+      <h2>封爵散阶</h2>
+      <p>宗室封爵的降序，文武散阶与勋级的品次。</p>
+    </div>
+
+    <h3 class="sub-head">宗室封爵</h3>
+    <div class="peerages" id="peerages"></div>
+
+    <h3 class="sub-head">散官与勋级</h3>
+    <div class="rank-lists" id="rank-lists"></div>
+  </section>
+
+  <!-- ──────────────────────────────  科举取士  ────────────────────────────── -->
+  <section class="panel" id="panel-exams" role="tabpanel" aria-labelledby="tab-exams" tabindex="-1" hidden>
+    <div class="panel-head">
+      <h2>科举取士</h2>
+      <p>童试而后乡试、会试、殿试，四级相承，逐年而进。</p>
+    </div>
+
+    <ol class="ladder" id="exam-ladder"></ol>
+
+    <div class="table-wrap">
+      <table class="grid" id="exam-table">
+        <thead>
+          <tr><th>考试地点</th><th>时间</th><th>等级</th><th>录取结果</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-title">大明 · 帝王世系与官职品级</p>
+    <p class="footer-links">
+      <a class="footer-github" id="footer-github" href="#" target="_blank" rel="noopener noreferrer" title="GitHub 源码仓库" aria-label="GitHub 源码仓库" hidden>
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>源码仓库</span>
+      </a>
+      <a class="footer-beian" id="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" hidden></a>
+    </p>
+  </div>
+</footer>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
