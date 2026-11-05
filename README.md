@@ -7,6 +7,8 @@
 站点跑在 Cloudflare Workers 上：静态页面由 Workers Assets 提供，
 Worker 负责 `/api/*` 的数据与检索接口。
 
+线上：<https://ming.yqjc2003.workers.dev>
+
 ## 目录
 
 ```
