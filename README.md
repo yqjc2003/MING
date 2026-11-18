@@ -89,6 +89,20 @@ fetch('/api/config').then(r => r.json()).then(cfg => {
 
 ## 部署
 
+推送到 `main` 会通过 GitHub Actions 自动部署，也可在 Actions 中手动运行。
+首次使用前，在仓库 **Settings → Secrets and variables → Actions** 中设置：
+
+| 类型 | 名称 | 值 |
+| --- | --- | --- |
+| Secret | `CLOUDFLARE_API_TOKEN` | 限定到目标账户、具有 Workers Scripts 编辑权限的 API token |
+| Secret | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare 账户 ID |
+| Variable | `SITE_GITHUB` | 站点仓库地址 |
+| Variable | `SITE_BAIDU_ID` | 百度统计站点 ID |
+
+这四项均为自动部署必填项，避免缺少站点配置时覆盖现有线上配置。
+配置完成后将工作流推送到 `main`，在 Actions 页查看运行结果。
+创建 token 的步骤参见 [Cloudflare GitHub Actions 文档](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/)。
+
 ```bash
 npx wrangler login     # 或设置 CLOUDFLARE_API_TOKEN
 npm run deploy
